@@ -6,23 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // INSECURE CODE: Vulnerable to SQL Injection (intentionally left unfixed)
-    $sql = "SELECT * FROM users WHERE username = '" . $username . "'";
-    
-    try {
-        $result = $conn->query($sql);
-    } catch (PDOException $e) {
-        echo "Query error: " . $e->getMessage();
-        exit;
-    }
+    // SECURE CODE: Use prepared statements to prevent SQL Injection
+    $sql = "SELECT * FROM users WHERE username = :username";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':username', $username);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result) {
-        $user = $result->fetch(PDO::FETCH_ASSOC);
-    } else {
-        $user = false;
-    }
-
-    // Bypass password check to demonstrate vulnerability
+    // Bypass password check to demonstrate vulnerability (intentionally left unfixed)
     if ($user) {
         $_SESSION['username'] = $user['username'];
         echo "Welcome, " . $user['username'] . " 🔥";
@@ -42,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Username: <input type="text" name="username" required><br>
     Password: <input type="password" name="password" required><br>
     <button type="submit">Login</button>
+    <a href="forgot-password.php">Forgot Password?</a>
 </form>
 </body>
 </html>
