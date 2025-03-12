@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_tmp = $_FILES['file']['tmp_name'];
         $upload_dir = 'uploads/';
 
-        // Move the uploaded file to the uploads folder
+        // INSECURE CODE: Allow ANY file type (no validation)
         if (move_uploaded_file($file_tmp, $upload_dir . $file_name)) {
             echo "File uploaded successfully! 🔥<br>";
-            echo "File Name: " . $file_name; // Intentionally vulnerable to XSS
+            echo "File Name: " . htmlspecialchars($file_name); // Display sanitized name
         } else {
             echo "File upload failed 😭";
         }
