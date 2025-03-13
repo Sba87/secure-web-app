@@ -2,21 +2,24 @@
 session_start();
 include 'config.php';
 
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // SECURE CODE: Use prepared statements to prevent SQL Injection
+    // SECURE CODE: Prepared statement for SQL Injection
     $sql = "SELECT * FROM users WHERE username = :username";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Bypass password check to demonstrate vulnerability (intentionally left unfixed)
+    // Bypass password check (intentionally left unfixed)
     if ($user) {
         $_SESSION['username'] = $user['username'];
-        echo "Welcome, " . $user['username'] . " 🔥";
+        header("Location: index.php"); // Redirect to index.php
+        exit(); // Stop script execution
     } else {
         echo "Invalid username or password 😭";
     }
@@ -26,9 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Login</title>
+
 </head>
+
 <body>
+
 <h1>Login</h1>
+<div style="margin: 20px; text-align: left;">
+    <a href="index.php" style="text-decoration: none; padding: 10px; background: #007bff; color: white; border-radius: 5px;">
+        home Page
+    </a>
+</div>
 <form method="post">
     Username: <input type="text" name="username" required><br>
     Password: <input type="password" name="password" required><br>

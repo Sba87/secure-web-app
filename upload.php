@@ -28,6 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <h1>File Upload</h1>
+<div style="margin: 20px; text-align: left;">
+    <a href="index.php" style="text-decoration: none; padding: 10px; background: #007bff; color: white; border-radius: 5px;">
+        home Page
+    </a>
+</div>
 <form method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="file" required>

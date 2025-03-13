@@ -27,6 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 <h1>Register</h1>
+<div style="margin: 20px; text-align: left;">
+    <a href="index.php" style="text-decoration: none; padding: 10px; background: #007bff; color: white; border-radius: 5px;">
+        home Page
+    </a>
+</div>
 <form method="post">
     Username: <input type="text" name="username" required><br>
     Email: <input type="email" name="email" required><br>
