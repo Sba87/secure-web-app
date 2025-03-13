@@ -2,8 +2,6 @@
 session_start();
 include 'config.php';
 
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -15,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Bypass password check (intentionally left unfixed)
-    if ($user) {
+    // verify password
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $user['username'];
         header("Location: index.php"); // Redirect to index.php
         exit(); // Stop script execution
     } else {
-        echo "Invalid username or password 😭";
+        echo "Invalid username or password ";
     }
 }
 ?>
@@ -29,15 +27,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 <head>
     <title>Login</title>
-
 </head>
-
 <body>
-
 <h1>Login</h1>
 <div style="margin: 20px; text-align: left;">
     <a href="index.php" style="text-decoration: none; padding: 10px; background: #007bff; color: white; border-radius: 5px;">
-        home Page
+        Home Page
     </a>
 </div>
 <form method="post">

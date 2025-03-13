@@ -1,10 +1,9 @@
 <?php
 // Database Connection
-$host = "localhost"; // or "localhost:3308" if using a nonstandard port
+$host = "localhost"; 
 $username = "root";
 $password = "Kokoko88"; // Use your MySQL password here
-$dbname = "secure_web_app"; // Ensure this matches your database name
-
+$dbname = "secure_web_app"; 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,5 +14,5 @@ try {
 }
 
 // OpenWeatherMap API Key
-$api_key = "685194827bdaf5ce64fd1c8963866af8"; // Add this line
+$api_key = "685194827bdaf5ce64fd1c8963866af8";
 ?>

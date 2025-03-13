@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2025 at 07:28 AM
+-- Generation Time: Mar 13, 2025 at 12:37 PM
 -- Server version: 9.1.0
 -- PHP Version: 8.2.12
 
@@ -45,6 +45,27 @@ INSERT INTO `password_reset_attempts` (`id`, `email`, `timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `uploaded_files`
+--
+
+CREATE TABLE `uploaded_files` (
+  `id` int NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `uploaded_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `uploaded_files`
+--
+
+INSERT INTO `uploaded_files` (`id`, `username`, `filename`, `uploaded_at`) VALUES
+(1, 'saoud', 'scriptalert(\'XSS Attack!\');script.txt', '2025-03-13 09:42:25'),
+(2, 'saoud', 'scriptalert(\'XSS Attack!\');script.txt', '2025-03-13 09:42:28');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -80,6 +101,12 @@ ALTER TABLE `password_reset_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `uploaded_files`
+--
+ALTER TABLE `uploaded_files`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -94,6 +121,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `password_reset_attempts`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `uploaded_files`
+--
+ALTER TABLE `uploaded_files`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

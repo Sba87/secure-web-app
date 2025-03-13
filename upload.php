@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             echo "File uploaded successfully! 🔥<br>";
         } else {
-            echo "File upload failed 😭";
+            echo "File upload failed ";
         }
     } else {
         echo "No file uploaded or an error occurred.";
