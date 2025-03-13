@@ -18,7 +18,7 @@ include 'config.php';
     <hr>
     <h2>Features:</h2>
     <ul>
-        <li><a href="upload.php">Upload Files</a></li>
+        <li><a href="upload.php">Upload/Download Files</a></li>
         <li><a href="weather.php">Check Weather</a></li>
     </ul>
 </body>
